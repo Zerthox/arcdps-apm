@@ -1,5 +1,7 @@
 use std::collections::HashMap;
 
+// TODO: rather than blacklisting autos, whitelist "action" skills to exclude trait skills etc.
+
 /// Default skill data.
 pub const SKILLS: &[(u32, bool)] = &include!(concat!(env!("OUT_DIR"), "/skill_data.rs"));
 
