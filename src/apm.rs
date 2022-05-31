@@ -11,8 +11,8 @@ pub struct Counter {
     /// Cast counter.
     count: u64,
 
-    /// Skill id of last completed cast.
-    last_cast: Option<u32>,
+    /// Last completed skill cast.
+    last_cast: Option<(u32, bool)>,
 }
 
 impl Counter {
@@ -36,9 +36,11 @@ impl Counter {
     }
 
     /// Registers a cast event.
-    pub fn register_cast(&mut self, skill_id: u32) {
-        self.count += 1;
-        self.last_cast = Some(skill_id);
+    pub fn register_cast(&mut self, skill_id: u32, is_auto: bool) {
+        if !is_auto {
+            self.count += 1;
+        }
+        self.last_cast = Some((skill_id, is_auto));
     }
 }
 
@@ -50,9 +52,18 @@ impl Component<'_> for Counter {
             let now = unsafe { timeGetTime() } as u64;
             let duration = Duration::from_millis(now - start);
             let apm = (60.0 * self.count as f64) / duration.as_secs() as f64;
-            ui.text(format!("Own: {:.2}", apm));
+            ui.text(format!("APM: {:.2}", apm));
         } else {
-            ui.text("Own: -");
+            ui.text("APM: -");
+        }
+        if let Some((skill_id, is_auto)) = self.last_cast {
+            ui.text(format!(
+                "Last: {}{}",
+                skill_id,
+                if is_auto { " (auto)" } else { "" }
+            ));
+        } else {
+            ui.text("Last: -");
         }
     }
 }
