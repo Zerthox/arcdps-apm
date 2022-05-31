@@ -7,14 +7,14 @@ pub mod ui;
 #[derive(Debug)]
 pub struct Plugin {
     data: Data,
-    counter: Window<Stats>,
+    stats: Window<Stats>,
 }
 
 impl Plugin {
     pub fn new() -> Self {
         Self {
             data: Data::with_defaults(),
-            counter: Window::new(
+            stats: Window::new(
                 WindowOptions {
                     auto_resize: true,
                     ..WindowOptions::new("APM Stats")

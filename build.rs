@@ -5,8 +5,6 @@ use std::{collections::HashMap, env, fs, path::PathBuf, pin::Pin};
 
 #[tokio::main]
 async fn main() {
-    let manifest =
-        PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("failed to get manifest dir"));
     let out_dir = PathBuf::from(env::var_os("OUT_DIR").expect("failed to get out dir"));
 
     // fetch data
@@ -16,17 +14,18 @@ async fn main() {
     let skills = fetch_skills(&ids).await.expect("failed to fetch skills");
 
     // parse overwrites
-    let overwrites: Overwrites = serde_yaml::from_str(
-        &fs::read_to_string(manifest.join("src/data/overwrites.yml"))
-            .expect("failed to read overwrites"),
+    const OVERWRITES_PATH: &str = "src/data/overwrites.yml";
+    let overwrites: Vec<u32> = serde_yaml::from_str(
+        &fs::read_to_string(OVERWRITES_PATH).expect("failed to read overwrites"),
     )
     .expect("failed to parse overwrites");
+    println!("cargo:rerun-if-changed={}", OVERWRITES_PATH);
 
     // insert into map
     let skill_data: HashMap<_, _> = skills
         .iter()
-        .map(|skill| (skill.id, skill.is_auto()))
-        .chain(overwrites.auto.into_iter().map(|id| (id, true)))
+        .map(|skill| (skill.id, skill.is_action()))
+        .chain(overwrites.into_iter().map(|id| (id, true)))
         .collect();
 
     // generate file contents
@@ -88,12 +87,8 @@ struct Skill {
 }
 
 impl Skill {
-    pub fn is_auto(&self) -> bool {
-        matches!(self.slot.as_str(), "Weapon_1" | "Downed_1")
+    pub fn is_action(&self) -> bool {
+        // everything that has a slot set except weapon and downed skill 1
+        !matches!(self.slot.as_str(), "" | "Weapon_1" | "Downed_1")
     }
-}
-
-#[derive(Debug, Deserialize)]
-struct Overwrites {
-    pub auto: Vec<u32>,
 }

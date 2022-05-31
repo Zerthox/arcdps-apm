@@ -1,7 +1,6 @@
 use arc_util::ui::{Component, Windowable};
 use arcdps_imgui::Ui;
 use std::time::Duration;
-use windows::Win32::Media::timeGetTime;
 
 #[derive(Debug)]
 pub struct Stats {
@@ -10,6 +9,9 @@ pub struct Stats {
 
     /// Start time of combat.
     start: u64,
+
+    /// Time of last registered cast.
+    now: u64,
 
     /// Casts counter.
     casts: u64,
@@ -23,6 +25,7 @@ impl Stats {
         Self {
             active: false,
             start: 0,
+            now: 0,
             casts: 0,
             actions: 0,
         }
@@ -32,6 +35,7 @@ impl Stats {
     pub fn start(&mut self, time: u64) {
         self.active = true;
         self.start = time;
+        self.now = 0;
         self.casts = 0;
         self.actions = 0;
     }
@@ -42,10 +46,16 @@ impl Stats {
     }
 
     /// Registers a cast event.
-    pub fn register_cast(&mut self, _skill_id: u32, is_auto: bool) {
+    pub fn register_cast(&mut self, time: u64, is_action: bool) {
         if self.active {
+            // update time
+            if time > self.now {
+                self.now = time;
+            }
+
+            // update counters
             self.casts += 1;
-            if !is_auto {
+            if is_action {
                 self.actions += 1;
             }
         }
@@ -61,16 +71,14 @@ impl Component<'_> for Stats {
     type Props = ();
 
     fn render(&mut self, ui: &Ui, _: &Self::Props) {
-        if self.start != 0 {
-            // TODO: use last received event timestamp instead
-            let now = unsafe { timeGetTime() } as u64;
+        if self.start != 0 && self.now > self.start {
             ui.text(format!(
                 "Casts:   {:>6.2}/m",
-                Self::per_minute(self.casts, self.start, now)
+                Self::per_minute(self.casts, self.start, self.now)
             ));
             ui.text(format!(
                 "Actions: {:>6.2}/m",
-                Self::per_minute(self.actions, self.start, now)
+                Self::per_minute(self.actions, self.start, self.now)
             ));
         } else {
             ui.text("Casts:        -/m");

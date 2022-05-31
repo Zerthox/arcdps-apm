@@ -1,9 +1,58 @@
-# auto attack skill ids missing from api
-auto:
-  # bladesworn gunsaber autos
-  - 62966
-  - 62772
-  - 62918
+# Action skills missing from the GW2 API.
+# TODO: should thief stealth attacks be actions?
 
-  # specter shadow shroud auto
-  - 63362
+# Arc custom skills
+- 1066 # Resurrect
+- 1175 # Bandage
+- 65001 # Dodge
+
+# Thief Raid stolen skills
+- 49063 # Detonate Plasma
+- 49123 # Unstable Artifact
+- 49052 # Soul Stone Venom
+- 49112 # Throw Magnetic Bomb
+
+# Thief Strike stolen skills
+- 59154 # Throw Enchanted Ice
+- 59324 # Throw Unstable Reagent
+- 59485 # Throw Cursed Artifact
+- 59328 # Drink Ambrosia
+- 59327 # Blessing Seed
+- 59447 # Time in a Bottle
+
+# Firebrand Tomes (with auto)
+- 41258 # Chapter 1: Searing Spell
+- 40635 # Chapter 2: Igniting Burst
+- 42449 # Chapter 3: Heated Rebuke
+- 40015 # Chapter 4: Scorched Aftermath
+- 42898 # Epilogue: Ashes of the Just
+- 45022 # Chapter 1: Desert Bloom
+- 40679 # Chapter 2: Radiant Recovery
+- 45128 # Chapter 3: Azure Sun
+- 42008 # Chapter 4: Shining River
+- 42925 # Epilogue: Eternal Oasis
+- 42986 # Chapter 1: Unflinching Charge
+- 41968 # Chapter 2: Daring Challenge
+- 41836 # Chapter 3: Valiant Bulwark
+- 40988 # Chapter 4: Stalwart Stand
+- 44455 # Epilogue: Unbroken Lines
+
+# Bladesworn Dragon Trigger (with auto)
+- 62797 # Dragon Slash - Force
+- 62980 # Dragon Slash - Boost
+- 62951 # Dragon Slash - Reach
+- 62893 # Triggerguard
+- 62926 # Flicker Step
+
+# Bladesworn Gunsaber (without auto)
+- 62930 # Blooming Fire
+- 62732 # Artillery Slash
+- 62789 # Cyclone Trigger
+- 62885 # Break Step
+
+# Specter Shadow Shroud (without auto)
+- 63362 # Haunt Shot
+- 63167 # Grasping Shadows
+- 63220 # Dawn's Response
+- 63160 # Eternal Night
+- 63249 # Mind Shock

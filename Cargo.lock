@@ -62,7 +62,6 @@ dependencies = [
  "serde",
  "serde_yaml",
  "tokio",
- "windows",
 ]
 
 [[package]]

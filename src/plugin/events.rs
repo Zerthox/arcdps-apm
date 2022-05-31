@@ -20,19 +20,19 @@ impl Plugin {
                 match event.is_statechange.into() {
                     StateChange::EnterCombat => {
                         if is_self {
-                            self.counter.start(event.time);
+                            self.stats.start(event.time);
                         }
                     }
                     StateChange::ExitCombat => {
                         if is_self {
-                            self.counter.stop();
+                            self.stats.stop();
                         }
                     }
                     StateChange::None => match event.is_activation.into() {
                         Activation::Reset | Activation::CancelFire => {
                             let skill_id = event.skill_id;
-                            let is_auto = self.data.skill(skill_id).unwrap_or(false);
-                            self.counter.register_cast(skill_id, is_auto);
+                            let is_action = self.data.is_action(skill_id);
+                            self.stats.register_cast(event.time, is_action);
                         }
                         _ => {}
                     },

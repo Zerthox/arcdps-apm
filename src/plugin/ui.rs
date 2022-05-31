@@ -6,7 +6,7 @@ impl Plugin {
     /// Callback for standalone UI creation.
     pub fn render_windows(&mut self, ui: &Ui, not_loading: bool) {
         if not_loading {
-            self.counter.render(ui, &());
+            self.stats.render(ui, &());
         }
     }
 
@@ -18,7 +18,7 @@ impl Plugin {
     /// Callback for ArcDPS option checkboxes.
     pub fn render_window_options(&mut self, ui: &Ui, option_name: Option<&str>) -> bool {
         if option_name.is_none() {
-            ui.checkbox("APM Counter", self.counter.visible_mut());
+            ui.checkbox("APM Counter", self.stats.visible_mut());
         }
         false
     }
