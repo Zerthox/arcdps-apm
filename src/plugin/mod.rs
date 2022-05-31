@@ -1,4 +1,4 @@
-use crate::{api::Api, apm::Counter};
+use crate::{apm::Counter, data::Data};
 use arc_util::ui::{Window, WindowOptions};
 
 pub mod events;
@@ -6,14 +6,14 @@ pub mod ui;
 
 #[derive(Debug)]
 pub struct Plugin {
-    api: Api,
+    data: Data,
     counter: Window<Counter>,
 }
 
 impl Plugin {
     pub fn new() -> Self {
         Self {
-            api: Api::new(),
+            data: Data::with_defaults(),
             counter: Window::new(
                 WindowOptions {
                     auto_resize: true,

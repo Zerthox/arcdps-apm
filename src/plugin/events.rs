@@ -1,5 +1,3 @@
-use crate::PLUGIN;
-
 use super::Plugin;
 use arc_util::api::{Activation, StateChange};
 use arcdps::{Agent, CombatEvent};
@@ -32,7 +30,9 @@ impl Plugin {
                     }
                     StateChange::None => match event.is_activation.into() {
                         Activation::Reset | Activation::CancelFire => {
-                            self.api.get(event.skill_id, Self::skill_cast);
+                            let skill_id = event.skill_id;
+                            let is_auto = self.data.skill(skill_id).unwrap_or(false);
+                            self.counter.register_cast(skill_id, is_auto);
                         }
                         _ => {}
                     },
@@ -40,14 +40,5 @@ impl Plugin {
                 }
             }
         }
-    }
-
-    fn skill_cast(skill_id: u32, is_auto: bool) {
-        // this is a bit hacky but whatever
-        PLUGIN
-            .lock()
-            .unwrap()
-            .counter
-            .register_cast(skill_id, is_auto);
     }
 }

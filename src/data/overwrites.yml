@@ -1,0 +1,9 @@
+# auto attack skill ids missing from api
+auto:
+  # bladesworn gunsaber autos
+  - 62966
+  - 62772
+  - 62918
+
+  # specter shadow shroud auto
+  - 63362
