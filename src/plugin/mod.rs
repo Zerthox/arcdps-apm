@@ -1,4 +1,4 @@
-use crate::{apm::Counter, data::Data};
+use crate::{data::Data, stats::Stats};
 use arc_util::ui::{Window, WindowOptions};
 
 pub mod events;
@@ -7,7 +7,7 @@ pub mod ui;
 #[derive(Debug)]
 pub struct Plugin {
     data: Data,
-    counter: Window<Counter>,
+    counter: Window<Stats>,
 }
 
 impl Plugin {
@@ -17,9 +17,9 @@ impl Plugin {
             counter: Window::new(
                 WindowOptions {
                     auto_resize: true,
-                    ..WindowOptions::new("APM Counter")
+                    ..WindowOptions::new("APM Stats")
                 },
-                Counter::new(),
+                Stats::new(),
             ),
         }
     }

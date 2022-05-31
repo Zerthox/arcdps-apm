@@ -25,7 +25,7 @@ impl Plugin {
                     }
                     StateChange::ExitCombat => {
                         if is_self {
-                            self.counter.reset();
+                            self.counter.stop();
                         }
                     }
                     StateChange::None => match event.is_activation.into() {
