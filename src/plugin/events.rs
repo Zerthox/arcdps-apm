@@ -29,7 +29,7 @@ impl Plugin {
                         }
                     }
                     StateChange::None => match event.is_activation.into() {
-                        Activation::Reset | Activation::CancelFire => {
+                        Activation::Reset | Activation::CancelFire if is_self => {
                             let skill_id = event.skill_id;
                             let is_action = self.data.is_action(skill_id);
                             self.stats.register_cast(event.time, is_action);
