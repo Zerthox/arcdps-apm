@@ -50,7 +50,7 @@ dependencies = [
 
 [[package]]
 name = "arcdps_apm"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "arc_util",
  "arcdps",

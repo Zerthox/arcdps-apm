@@ -2,6 +2,8 @@ use arc_util::ui::{Component, Windowable};
 use arcdps_imgui::Ui;
 use std::time::Duration;
 
+pub mod settings;
+
 #[derive(Debug)]
 pub struct Stats {
     /// Combat state.
@@ -88,5 +90,5 @@ impl Component<'_> for Stats {
 }
 
 impl Windowable<'_> for Stats {
-    const CONTEXT_MENU: bool = false;
+    const CONTEXT_MENU: bool = true;
 }
