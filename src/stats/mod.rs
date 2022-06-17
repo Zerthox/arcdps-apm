@@ -75,16 +75,16 @@ impl Component<'_> for Stats {
     fn render(&mut self, ui: &Ui, _: &Self::Props) {
         if self.start != 0 && self.now > self.start {
             ui.text(format!(
-                "Casts:   {:>6.2}/m",
+                "Casts   {:>6.2}/m",
                 Self::per_minute(self.casts, self.start, self.now)
             ));
             ui.text(format!(
-                "Actions: {:>6.2}/m",
+                "Actions {:>6.2}/m",
                 Self::per_minute(self.actions, self.start, self.now)
             ));
         } else {
-            ui.text("Casts:        -/m");
-            ui.text("Actions:      -/m");
+            ui.text("Casts        -/m");
+            ui.text("Actions      -/m");
         }
     }
 }

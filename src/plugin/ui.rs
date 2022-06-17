@@ -18,7 +18,7 @@ impl Plugin {
     /// Callback for ArcDPS option checkboxes.
     pub fn render_window_options(&mut self, ui: &Ui, option_name: Option<&str>) -> bool {
         if option_name.is_none() {
-            ui.checkbox("APM Counter", self.stats.visible_mut());
+            ui.checkbox("APM Stats", self.stats.visible_mut());
         }
         false
     }
