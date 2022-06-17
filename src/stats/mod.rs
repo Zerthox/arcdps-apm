@@ -65,7 +65,7 @@ impl Stats {
 
     fn per_minute(count: u64, start: u64, now: u64) -> f64 {
         let duration = Duration::from_millis(now - start);
-        (60.0 * count as f64) / duration.as_secs() as f64
+        60.0 * count as f64 / duration.as_secs_f64()
     }
 }
 
