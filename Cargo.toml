@@ -1,14 +1,14 @@
 [package]
 name = "arcdps_apm"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Zerthox"]
 repository = "https://github.com/zerthox/arcdps-apm"
 
 [dependencies]
-arcdps = "0.7"
+arcdps = { version = "0.8", git = "https://github.com/zerthox/arcdps-bindings" }
 arcdps-imgui = "0.8"
-arc_util = { git = "https://github.com/zerthox/arcdps-utils", branch = "0.7.x", features = ["serde", "settings"] }
+arc_util = { git = "https://github.com/zerthox/arcdps-utils", branch = "0.8.x", features = ["serde", "settings"] }
 once_cell = "1.9"
 
 [build-dependencies]

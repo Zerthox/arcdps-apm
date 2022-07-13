@@ -2,7 +2,7 @@ mod data;
 mod plugin;
 mod stats;
 
-use arcdps::{arcdps_export, imgui::Ui, Agent, CombatEvent};
+use arcdps::{imgui::Ui, Agent, CombatEvent};
 use once_cell::sync::Lazy;
 use plugin::Plugin;
 use std::{error::Error, sync::Mutex};
@@ -11,7 +11,7 @@ use std::{error::Error, sync::Mutex};
 static PLUGIN: Lazy<Mutex<Plugin>> = Lazy::new(|| Mutex::new(Plugin::new()));
 
 // create exports for arcdps
-arcdps_export! {
+arcdps::export! {
     name: "APM",
     sig: 0x04afedc5, // random id
     init,
@@ -34,7 +34,7 @@ fn release() {
 }
 
 fn combat(
-    event: Option<&CombatEvent>,
+    event: Option<CombatEvent>,
     src: Option<Agent>,
     dest: Option<Agent>,
     skill_name: Option<&str>,

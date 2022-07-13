@@ -4,27 +4,37 @@ version = 3
 
 [[package]]
 name = "arc_util"
-version = "0.7.0"
-source = "git+https://github.com/zerthox/arcdps-utils?branch=0.7.x#bea60092d888a05460ac600578bbd903aed50e5b"
+version = "0.8.0"
+source = "git+https://github.com/zerthox/arcdps-utils?branch=0.8.x#ea848e735aeaf057e8a49b8a123977d1235f46f2"
 dependencies = [
  "arcdps",
- "num_enum",
  "serde",
  "serde_json",
- "strum",
  "windows",
 ]
 
 [[package]]
 name = "arcdps"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a07e7c1acfc350f88b865a64464a369dd9bfa668bfbffd5ce77f0dae3cf0f5e"
+version = "0.8.0"
+source = "git+https://github.com/zerthox/arcdps-bindings#1a1d72d003331cebc15abb095da177845c5f05be"
 dependencies = [
+ "arcdps-codegen",
  "arcdps-imgui",
- "arcdps_codegen",
- "log",
- "once_cell",
+ "num_enum",
+ "serde",
+ "windows",
+]
+
+[[package]]
+name = "arcdps-codegen"
+version = "0.8.0"
+source = "git+https://github.com/zerthox/arcdps-bindings#1a1d72d003331cebc15abb095da177845c5f05be"
+dependencies = [
+ "cfg-if",
+ "paste",
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -50,7 +60,7 @@ dependencies = [
 
 [[package]]
 name = "arcdps_apm"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "arc_util",
  "arcdps",
@@ -62,18 +72,6 @@ dependencies = [
  "serde",
  "serde_yaml",
  "tokio",
-]
-
-[[package]]
-name = "arcdps_codegen"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "33bc01a0700f4f94a615d37e1c58880acd9e7904bbdf7db6c53a452d1cd50a56"
-dependencies = [
- "paste",
- "proc-macro2",
- "quote",
- "syn",
 ]
 
 [[package]]
@@ -302,12 +300,6 @@ name = "hashbrown"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "db0d4cf898abf0081f964436dc980e96670a0f36863e4b83aaacdb65c9d7ccc3"
-
-[[package]]
-name = "heck"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2540771e65fc8cb83cd6e8a237f70c319bd5c29f78ed1084ba5d50eeac86f7f9"
 
 [[package]]
 name = "hermit-abi"
@@ -746,12 +738,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rustversion"
-version = "1.0.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a0a5f7c728f5d284929a1cccb5bc19884422bfe6ef4d6c409da2c41838983fcf"
-
-[[package]]
 name = "ryu"
 version = "1.0.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -871,28 +857,6 @@ checksum = "66d72b759436ae32898a2af0a14218dbf55efde3feeb170eb623637db85ee1e0"
 dependencies = [
  "libc",
  "winapi",
-]
-
-[[package]]
-name = "strum"
-version = "0.24.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "063e6045c0e62079840579a7e47a355ae92f60eb74daaf156fb1e84ba164e63f"
-dependencies = [
- "strum_macros",
-]
-
-[[package]]
-name = "strum_macros"
-version = "0.24.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4faebde00e8ff94316c01800f9054fd2ba77d30d9e922541913051d1d978918b"
-dependencies = [
- "heck",
- "proc-macro2",
- "quote",
- "rustversion",
- "syn",
 ]
 
 [[package]]
