@@ -6,13 +6,8 @@ impl Plugin {
     /// Callback for standalone UI creation.
     pub fn render_windows(&mut self, ui: &Ui, not_loading: bool) {
         if not_loading {
-            self.stats.render(ui, &());
+            self.stats.render(ui, ());
         }
-    }
-
-    /// Callback for settings UI creation.
-    pub fn render_settings(&mut self, ui: &Ui) {
-        ui.text("Nothing here yet...");
     }
 
     /// Callback for ArcDPS option checkboxes.

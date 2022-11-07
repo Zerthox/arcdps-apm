@@ -18,7 +18,6 @@ arcdps::export! {
     release,
     combat,
     imgui,
-    options_end,
     options_windows,
     wnd_filter,
 }
@@ -59,10 +58,6 @@ fn options_windows(ui: &Ui, window_name: Option<&str>) -> bool {
         .lock()
         .unwrap()
         .render_window_options(ui, window_name)
-}
-
-fn options_end(ui: &Ui) {
-    PLUGIN.lock().unwrap().render_settings(ui)
 }
 
 fn wnd_filter(key: usize, key_down: bool, prev_key_down: bool) -> bool {

@@ -69,10 +69,8 @@ impl Stats {
     }
 }
 
-impl Component<'_> for Stats {
-    type Props = ();
-
-    fn render(&mut self, ui: &Ui, _: &Self::Props) {
+impl Component<()> for Stats {
+    fn render(&mut self, ui: &Ui, _: ()) {
         if self.start != 0 && self.now > self.start {
             ui.text(format!(
                 "Casts   {:>6.2}/m",
@@ -89,6 +87,6 @@ impl Component<'_> for Stats {
     }
 }
 
-impl Windowable<'_> for Stats {
+impl Windowable<()> for Stats {
     const CONTEXT_MENU: bool = true;
 }
